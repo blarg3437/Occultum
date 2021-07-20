@@ -28,8 +28,16 @@ namespace Occult
         /// </summary>
         protected override void Initialize()
         {
+            Util.Global.resolution = 32;
+            graphics.PreferredBackBufferWidth = Util.Global.resolution * 33;
+            graphics.PreferredBackBufferHeight = Util.Global.resolution * 19;
+            graphics.ApplyChanges();
             // TODO: Add your initialization logic here
+            Util.Global.screenWidth = GraphicsDevice.Viewport.Width;
+            Util.Global.screenHeight = GraphicsDevice.Viewport.Height;
 
+           
+            Util.Global.graphics = graphics;
             base.Initialize();
             
         }

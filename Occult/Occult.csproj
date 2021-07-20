@@ -41,7 +41,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Dungeon\MapStuff\DungeonMap.cs" />
+    <Compile Include="Dungeon\Camera.cs" />
+    <Compile Include="Dungeon\MapStuff\MapLayer.cs" />
+    <Compile Include="Dungeon\MapStuff\Tile.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,7 +53,11 @@
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Util\FileLoader.cs" />
+    <Compile Include="Util\Global.cs" />
+    <Compile Include="Util\Graphics\Drawing.cs" />
     <Compile Include="Util\Timer.cs" />
+    <Compile Include="World\Actor.cs" />
+    <Compile Include="World\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -67,6 +73,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

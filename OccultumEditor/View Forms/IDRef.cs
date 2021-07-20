@@ -5,14 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OccultumEditor
+namespace OccultumEditor.View_Forms
 {
-    public partial class Form1 : Form
+    public partial class IDRef : Form
     {
-        public Form1()
+        public IDRef()
         {
             InitializeComponent();
         }

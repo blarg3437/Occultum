@@ -69,6 +69,11 @@ namespace Occult.Screens
         }
         public void update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                switchScreens(new DungeonScreen());
+            }
+
             if (isTransistioning)
             {
                 if (transitionScreen.transition(gameTime))
@@ -76,11 +81,12 @@ namespace Occult.Screens
                     unloadAndSwitch();                    
                 }
             }
-
-            if(Keyboard.GetState().IsKeyDown(Keys.Space))
+            else
             {
-                switchScreens(new MenuScreen());
+                currentScreen.update(gameTime);
             }
+
+           
         }
 
         public void draw(SpriteBatch spriteBatch)
