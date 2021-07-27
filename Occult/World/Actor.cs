@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Occult.Dungeon;
+using Occult.Util;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -23,12 +25,13 @@ namespace Occult.World
 
         protected Vector2 position;
         public Vector2 getPostion() => position;
+        protected DungeonLevel dungeonImIn;
         
         public Actor(int posX, int posY)
         {
             ID = ++lastID;
             position = new Vector2(posX, posY);
-            moveTimerMilli = 250;
+            moveTimerMilli = Global.moveTime;
         }
 
       
@@ -60,6 +63,11 @@ namespace Occult.World
                     isMoving = false;
                 }
             }
+        }
+
+        protected bool willCollide(int newX, int newY)
+        {
+
         }
     }
 }

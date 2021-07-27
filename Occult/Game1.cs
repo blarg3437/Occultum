@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Occult.Screens;
+using Occult.Util.Graphics;
 
 namespace Occult
 {
@@ -52,8 +53,9 @@ namespace Occult
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ScreenManager.Instance.setEssentials(spriteBatch, graphics);
             ScreenManager.Instance.LoadContent(Content);
-
             ScreenManager.Instance.switchScreens(new DungeonScreen());
+
+            Drawing.Instance.AddSpriteFont(Content.Load<SpriteFont>("Font/DefaultFont"));
             // TODO: use this.Content to load your game content here
         }
 
@@ -89,8 +91,8 @@ namespace Occult
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             ScreenManager.Instance.draw(spriteBatch);
-           
 
+            
             base.Draw(gameTime);
         }
     }

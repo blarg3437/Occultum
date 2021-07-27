@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,20 +10,41 @@ namespace Occult.Dungeon.MapStuff
 {
     class Tile
     {
-        private int TileID;
-        private Actor actorOnMe;
-
-        public bool setActor(Actor actor)
+        public enum tiletype
         {
-            if (actorOnMe == null)
-            {
-                return false;
-            }
-            else
-            {
-                actorOnMe = actor;
-                return true;
-            }
+            middle,
+            leftbottom,
+            rightbottom,
+            lefttop,
+            righttop,
+            top,
+            left,
+            right,
+            bottom,
+            water,
+            path,
+            stair
         }
+
+        public tiletype tile;
+        public Actor actorOnMe
+        {
+            set {
+                if (value != null)
+                { actorOnMe = value; }
+            }
+            get{ return actorOnMe; }
+        }
+        public Tile()
+        {
+
+        }
+
+        public Tile(tiletype type)
+        {
+            tile = type;
+        }
+        
+
     }
 }

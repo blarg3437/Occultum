@@ -40,9 +40,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.SceneViewer = new System.Windows.Forms.PictureBox();
             this.ActionLayout = new System.Windows.Forms.Panel();
+            this.SceneViewer = new System.Windows.Forms.PictureBox();
+            this.BlockSelect = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SceneViewer)).BeginInit();
@@ -111,6 +114,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.BlockSelect);
             this.panel1.Location = new System.Drawing.Point(755, 31);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 348);
@@ -141,21 +146,40 @@
             this.panel3.TabIndex = 4;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
+            // ActionLayout
+            // 
+            this.ActionLayout.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.ActionLayout.Location = new System.Drawing.Point(336, 4);
+            this.ActionLayout.Name = "ActionLayout";
+            this.ActionLayout.Size = new System.Drawing.Size(378, 471);
+            this.ActionLayout.TabIndex = 2;
+            this.ActionLayout.MouseEnter += new System.EventHandler(this.ActionLayout_MouseEnter);
+            // 
             // SceneViewer
             // 
             this.SceneViewer.Location = new System.Drawing.Point(4, 4);
             this.SceneViewer.Name = "SceneViewer";
-            this.SceneViewer.Size = new System.Drawing.Size(502, 474);
+            this.SceneViewer.Size = new System.Drawing.Size(326, 474);
             this.SceneViewer.TabIndex = 1;
             this.SceneViewer.TabStop = false;
             this.SceneViewer.Click += new System.EventHandler(this.SceneViewer_Click);
             // 
-            // ActionLayout
+            // BlockSelect
             // 
-            this.ActionLayout.Location = new System.Drawing.Point(513, 4);
-            this.ActionLayout.Name = "ActionLayout";
-            this.ActionLayout.Size = new System.Drawing.Size(201, 471);
-            this.ActionLayout.TabIndex = 2;
+            this.BlockSelect.FormattingEnabled = true;
+            this.BlockSelect.Location = new System.Drawing.Point(15, 13);
+            this.BlockSelect.Name = "BlockSelect";
+            this.BlockSelect.Size = new System.Drawing.Size(167, 277);
+            this.BlockSelect.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 297);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -170,8 +194,10 @@
             this.Name = "MainWindow";
             this.Text = "Cutscene Scripter";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainWindow_DragEnter);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -196,6 +222,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox SceneViewer;
         private System.Windows.Forms.Panel ActionLayout;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox BlockSelect;
     }
 }
 

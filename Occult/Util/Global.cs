@@ -15,6 +15,7 @@ namespace Occult.Util
         public static int screenWidth;
         public static int screenHeight;
         public static int resolution;
+        public static int moveTime = 100;
 
         public static GraphicsDeviceManager graphics;
     }

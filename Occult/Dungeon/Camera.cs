@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Occult.Dungeon.MapStuff;
 using Occult.Util;
+using Occult.Util.Graphics;
 using Occult.World;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Occult.Dungeon
         private int width, height;
         
         
-        public int moveTimerMilli = 250;
+        public int moveTimerMilli = Global.moveTime;
         private float timer;
         bool isMoving;
         public Camera(Actor following, MapLayer layer)
@@ -50,7 +51,8 @@ namespace Occult.Dungeon
 
         public void update(GameTime gametime)
         {
-            if(isMoving)
+           
+            if (isMoving)
             {
                 if (timer <= moveTimerMilli)
                 {
@@ -84,6 +86,7 @@ namespace Occult.Dungeon
             int AWidth = AX + width; //possibly unecesary
             int AHeight = AY + height;
             viewFrame = new Rectangle(AX, AY, AWidth, AHeight);
+           
         }
     }
 }

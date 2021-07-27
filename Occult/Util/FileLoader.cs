@@ -39,14 +39,16 @@ namespace Occult.Util
             river = new StreamReader(fileIn);
             int width = Convert.ToInt32(river.ReadLine());
             int height = Convert.ToInt32(river.ReadLine());
-            int[,] data = new int[width, height];
+            Tile[,] data = new Tile[width, height];
             for (int y = 0; y < height; y++)
             {
                 string line = river.ReadLine();
                 string[] raw = line.Split(',');
                 for(int i = 0; i < raw.Length; i++)// taking the length to go to from the raw versus width, should allow 0's if the data is not of perfect length
                 {
-                    data[i, y] = Convert.ToInt32(raw[i]);
+                    Tile.tiletype type = (Tile.tiletype)Convert.ToInt32(raw[i]);
+                    data[i, y] = new Tile();
+                    data[i, y].tile = type;
                 }
             }
             MapLayer temp = new MapLayer(width, height);
