@@ -46,7 +46,7 @@ namespace Occult.Util
                 string[] raw = line.Split(',');
                 for(int i = 0; i < raw.Length; i++)// taking the length to go to from the raw versus width, should allow 0's if the data is not of perfect length
                 {
-                    Tile.tiletype type = (Tile.tiletype)Convert.ToInt32(raw[i]);
+                    TileType type = (TileType)Convert.ToInt32(raw[i]);
                     data[i, y] = new Tile();
                     data[i, y].tile = type;
                 }

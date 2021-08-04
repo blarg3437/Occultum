@@ -20,7 +20,7 @@ namespace Occult.World
 
         public delegate void OnTileStep(Player sender);//eventually might want to migrate to base class
         public event OnTileStep OnStairStep;
-        public Player(int x, int y) : base(x,y)
+        public Player(int x, int y, DungeonLevel level) : base(x,y, level)
         {
             widthOffset = Global.screenWidth/2;
             heightOffset = Global.screenHeight/2;

@@ -10,23 +10,9 @@ namespace Occult.Dungeon.MapStuff
 {
     class Tile
     {
-        public enum tiletype
-        {
-            middle,
-            leftbottom,
-            rightbottom,
-            lefttop,
-            righttop,
-            top,
-            left,
-            right,
-            bottom,
-            water,
-            path,
-            stair
-        }
+        
 
-        public tiletype tile;
+        public TileType tile;
         public Actor actorOnMe
         {
             set {
@@ -40,7 +26,7 @@ namespace Occult.Dungeon.MapStuff
 
         }
 
-        public Tile(tiletype type)
+        public Tile(TileType type)
         {
             tile = type;
         }

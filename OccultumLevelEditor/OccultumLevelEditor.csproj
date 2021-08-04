@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Forms.DX" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Occult\Occult.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MonoGame.Forms.DX">
+      <HintPath>..\..\..\..\.nuget\packages\monogame.forms.dx\2.4.0\lib\net451\MonoGame.Forms.DX.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\.nuget\packages\monogame.forms.dx\2.4.0\lib\net451\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

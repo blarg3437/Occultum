@@ -24,8 +24,9 @@ namespace Occult.Screens
        
         public override void initialize()
         {
-            player = new Player(0,0);                       
+                                 
             dungeon = new DungeonLevel(3);
+            player = new Player(dungeon.currentMap.spawnLocation.Item1, dungeon.currentMap.spawnLocation.Item2, dungeon);
             camera = new Camera(player, dungeon.currentMap);//this might cause problems when switching maps, as it is not updated to the camera
             res = Global.resolution;
         }
@@ -69,25 +70,25 @@ namespace Occult.Screens
                         //this will have to be contained in the currentmap at some point
                         switch(dungeon.currentMap.getTileAt(x,y).tile)
                             {
-                            case (Tile.tiletype.middle):
+                            case (TileType.middle):
                              sourceRect = new Rectangle(0, 0, res, res);
                                 break;
-                            case (Tile.tiletype.left):
+                            case (TileType.left):
                                 sourceRect = new Rectangle(5 * res, 0, res, res);
                                 break;
-                            case (Tile.tiletype.right):
+                            case (TileType.right):
                                 sourceRect = new Rectangle(5 * res, 1 * res, res, res);
                                 break;
-                            case (Tile.tiletype.top):
+                            case (TileType.top):
                                 sourceRect = new Rectangle(7 * res, 0, res, res);
                                 break;
-                            case (Tile.tiletype.bottom):
+                            case (TileType.bottom):
                                 sourceRect = new Rectangle(6 * res, 0, res, res);
                                 break;
-                            case (Tile.tiletype.path):
+                            case (TileType.path):
                                 sourceRect = new Rectangle(0 * res, 1 * res, res, res);
                                 break;
-                            case (Tile.tiletype.stair):
+                            case (TileType.stair):
                                 sourceRect = new Rectangle(6 * res, 1 * res, res, res);
                                 break;
                             default:

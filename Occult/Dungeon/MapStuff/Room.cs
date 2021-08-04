@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,61 +13,40 @@ namespace Occult.Dungeon.MapStuff
     /// </summary>
     class Room
     {
-       public int width {get;}
+        #region variables
+        public int width {get;}
        public int height{get;}
        public int startX{get;}
        public int startY { get; }
-    
+        public int centerX { get; }
+        public int centerY { get; }
+        #endregion
+
         public Room(int x, int y, int width, int height)
         {
             this.width = width;
             this.height = height;
             startX = x;
             startY = y;
-        }
-      
-        public Tile[,] generateRoom()
+            centerX = (this.width / 2) + startX;
+            centerY = (this.height / 2) + startY;
+        }       
+
+        public Tuple<int, int> ChooseSpawnPoint()
         {
-            Tile[,] temp = new Tile[width, height];
-            for (int y = 0; y < height; y++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    Tile eFrat = new Tile(Tile.tiletype.path);
+            Random rand = new Random();
+            int locationX = rand.Next(width) + startX;
+            int locationY = rand.Next(height) + startY;
 
-                    if (j == 0)
-                    {
-                        eFrat.tile = Tile.tiletype.left;
-                    }
-                    if (j == width - 1)
-                    {
-                        eFrat.tile = Tile.tiletype.right;
-                    }
+            return new Tuple<int, int>(locationX, locationY);
+        }
 
-                    if (y == 0)
-                    {
-                        if (j == 0)
-                            eFrat.tile = Tile.tiletype.lefttop;
-                        else if (j == width-1)
-                            eFrat.tile = Tile.tiletype.righttop;
-                        else
-                            eFrat.tile = Tile.tiletype.top;
+        public bool CollidesWith(Room otherRoom)
+        {
+            Rectangle me = new Rectangle(startX, startY, width, height);
+            Rectangle you = new Rectangle(otherRoom.startX, otherRoom.startY, otherRoom.width, otherRoom.height);
 
-                    }
-                    if (y == height - 1)
-                    {
-                        if (j == 0)
-                            eFrat.tile = Tile.tiletype.leftbottom;
-                        else if (j == width - 1)
-                            eFrat.tile = Tile.tiletype.rightbottom;
-                        else
-                            eFrat.tile = Tile.tiletype.bottom;
-                    }
-                   
-                    temp[j, y] = eFrat;
-                }
-            }
-            return temp;
+            return me.Intersects(you);
         }
     }
 }
