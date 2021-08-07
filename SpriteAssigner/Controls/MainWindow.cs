@@ -72,7 +72,7 @@ namespace SpriteAssigner
         protected override void Initialize()
         {
            GimmeTheGoods(@"C:\Users\Nicholas\Pictures\SpriteSheet1.png", 16);
-
+           
             overlayTex = new Texture2D(GraphicsDevice, 1,1);
             overlayTex.SetData(new[] { Color.White });
             base.Initialize();

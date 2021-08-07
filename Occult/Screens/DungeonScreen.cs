@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using Occult.Dungeon;
 using Occult.Dungeon.MapStuff;
 using Occult.Util;
@@ -21,6 +22,7 @@ namespace Occult.Screens
         Camera camera;
         DungeonLevel dungeon;
         int res;
+        int sourceres;//temporary really, just until I get some tight textures up
        
         public override void initialize()
         {
@@ -29,6 +31,7 @@ namespace Occult.Screens
             player = new Player(dungeon.currentMap.spawnLocation.Item1, dungeon.currentMap.spawnLocation.Item2, dungeon);
             camera = new Camera(player, dungeon.currentMap);//this might cause problems when switching maps, as it is not updated to the camera
             res = Global.resolution;
+            sourceres = 32;//temporary----------------------------------------------------------
         }
 
         public override void loadContent(ContentManager manager)
@@ -74,33 +77,34 @@ namespace Occult.Screens
                              sourceRect = new Rectangle(0, 0, res, res);
                                 break;
                             case (TileType.left):
-                                sourceRect = new Rectangle(5 * res, 0, res, res);
+                                sourceRect = new Rectangle(5 * sourceres, 0, res, res);
                                 break;
                             case (TileType.right):
-                                sourceRect = new Rectangle(5 * res, 1 * res, res, res);
+                                sourceRect = new Rectangle(5 *sourceres, 1 * sourceres, res, res);
                                 break;
                             case (TileType.top):
-                                sourceRect = new Rectangle(7 * res, 0, res, res);
+                                sourceRect = new Rectangle(7 *sourceres, 0, res, res);
                                 break;
                             case (TileType.bottom):
-                                sourceRect = new Rectangle(6 * res, 0, res, res);
+                                sourceRect = new Rectangle(6 * sourceres, 0,res, res);
                                 break;
                             case (TileType.path):
-                                sourceRect = new Rectangle(0 * res, 1 * res, res, res);
+                                sourceRect = new Rectangle(0 * sourceres, 1 * sourceres, res, res);
                                 break;
                             case (TileType.stair):
-                                sourceRect = new Rectangle(6 * res, 1 * res, res, res);
+                                sourceRect = new Rectangle(6 * sourceres, 1 * sourceres, res, res);
                                 break;
                             default:
                                 sourceRect = new Rectangle(0, 0, res, res);
                                 break;
                             }
-                            
-                            
-                            
+
+                        sourceRect.Width = sourceRect.Height = sourceres;
+
+
                         spriteBatch.Draw(
-                            texture: tester, 
-                            position : dest,
+                            texture: tester,
+                            destinationRectangle: new Rectangle(dest.ToPoint(), new Point(res)),
                             sourceRectangle: sourceRect,
                             color: Color.White);
                     }

@@ -55,7 +55,7 @@ namespace Occult.World
         public void draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(playerTex, 
-                new Rectangle(widthOffset-Global.resolution/2, heightOffset-Global.resolution / 2, Global.resolution, Global.resolution),
+                new Rectangle(widthOffset, heightOffset-Global.resolution / 2, Global.resolution, Global.resolution),
                 Color.White);//eventually add a tween offset, and add it here
         }
 

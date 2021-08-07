@@ -1,8 +1,12 @@
-﻿using Occult.Dungeon.MapStuff;
+﻿using Microsoft.Xna.Framework;
+using Occult.Dungeon.MapStuff;
 using SpriteAssigner.Data;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +22,7 @@ namespace SpriteAssigner
         int size;
         Form1 form;
         string texLocation;
+        Dictionary<TileType, Vector2> tempData;
         public Encoder(Form1 form, string texToDrawFrom)
         {
             texLocation = texToDrawFrom;
@@ -35,21 +40,45 @@ namespace SpriteAssigner
 
         public void writeToFile(string location)
         {
+            Debug.WriteLine("REcievied");
             Bitmap copyFrom = new Bitmap(texLocation);
 
             Bitmap tempImage = new Bitmap(form.spriteSize * size, (int)Math.Ceiling((double)form.maxEnums/size));
             Graphics g = Graphics.FromImage(tempImage);
+            generateLocationsWithoutFile();//make sure we have the locations on file
             for (int i = 0; i < form.maxEnums; i++)
             {
-                if(form.refs.ContainsKey((TileType)i))
+                Bitmap copyData = new Bitmap(form.spriteSize, form.spriteSize);
+                //Copy from form.refs
+                if (form.refs.ContainsKey((TileType)i))
                 {
-                   //heres the interesting part. I need to put certain ID's in certain locations on the map everytime.
-                   //luckily enough, you can find these locations in the occcultum drawing thingy, as they are sourced there.
-                   //Id recommend offloading that crap into a file, maybe somesort of structure or something, that way you can 
-                   //reference the same thing here and in occultum.
-                   //source the image using get pixel from copyfrom and the refs rectangle, then draw it at that mentioned rectangle value.
+                    //here I am sampling the pixels at the rectangle position, and taking them 
+                    Microsoft.Xna.Framework.Rectangle copyRect = form.refs[(TileType)i];
+                    for (int y = 0; y < copyRect.Height; y++)
+                    {
+                        for (int x = 0; x < copyRect.Width; x++)
+                        {
+                            copyData.SetPixel(x, y, copyFrom.GetPixel(x + copyRect.X*form.spriteSize, y + copyRect.Y*form.spriteSize));
+                        }
+                    }
                 }
+                else
+                {
+                    //here we are generating a square image of pink pixels, and we will draw that as a error image in place of missing ID's
+                    for (int y = 0; y < form.spriteSize; y++)
+                    {
+                        for (int x = 0; x < form.spriteSize; x++)
+                        {
+                            copyData.SetPixel(x, y, System.Drawing.Color.HotPink);
+                        }
+                    }
+                    //fill the rectangle with pink pixels and paste
+                }
+
+                g.DrawImage(copyData, new System.Drawing.Point((int)tempData[(TileType)i].X * form.spriteSize, (int)tempData[(TileType)i].Y * form.spriteSize));
+                //paste at tempdata * spritesize
             }
+            tempImage.Save(texLocation, ImageFormat.Png);
             writer = new StreamWriter(location);
             int numberPerRow;           
         }
@@ -65,6 +94,11 @@ namespace SpriteAssigner
             int y = 0;
             for (int i = 0; i < form.maxEnums; i++)
             {
+                //this section saves it locally
+                Vector2 temp = new Vector2(x, y);
+                tempData.Add((TileType)i, temp);
+
+
                 writer.Write(((TileType)i).ToString() + ",");
                 writer.Write(x + "," + y);
                 if(x == size)
@@ -79,6 +113,28 @@ namespace SpriteAssigner
                 writer.WriteLine();
             }
             writer.Close();
+        }
+
+       private void generateLocationsWithoutFile()
+        {
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < form.maxEnums; i++)
+            {
+                //this section saves it locally
+                Vector2 temp = new Vector2(x, y);
+                tempData.Add((TileType)i, temp);        
+                if (x == size)
+                {
+                    x = 0;
+                    y++;
+                }
+                else
+                {
+                    x++;
+                }
+                
+            }
         }
 
     }

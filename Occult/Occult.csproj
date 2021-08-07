@@ -68,6 +68,7 @@
     <Compile Include="World\Actor.cs" />
     <Compile Include="World\Item.cs" />
     <Compile Include="World\Player.cs" />
+    <Compile Include="World\Triggers\Trigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

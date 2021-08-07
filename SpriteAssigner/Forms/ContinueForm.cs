@@ -31,7 +31,7 @@ namespace SpriteAssigner.Forms
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            save(@"C:\Users\Nicholas\Pictures");
+            save(@"C:\Users\Nicholas\Pictures\Efrat.png");
             Close();
             //save and return
         }    

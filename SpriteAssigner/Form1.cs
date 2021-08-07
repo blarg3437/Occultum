@@ -24,8 +24,8 @@ namespace SpriteAssigner
         public Dictionary<TileType, Microsoft.Xna.Framework.Rectangle> refs;
         int selectedindex;
         bool isRunning;
-        
 
+        Encoder enc;
         
         public Form1()
         {
@@ -35,6 +35,8 @@ namespace SpriteAssigner
             mainWindow1.clickedEvent += addRectangle;
             mainWindow1.giveMeForm(this);
 
+            //complete debug move
+            TexLocation = @"C:\Users\Nicholas\Pictures\SpriteSheet1.png";
 
             selectedindex = 0;
             maxEnums = Enum.GetValues(typeof(TileType)).Length;
@@ -43,6 +45,7 @@ namespace SpriteAssigner
                 TileType current = (TileType)i;
                 listBox1.Items.Add(current.ToString());
             }
+            enc = new Encoder(this, TexLocation);
         }
 
         private void addRectangle(Microsoft.Xna.Framework.Rectangle rect)
@@ -124,6 +127,7 @@ namespace SpriteAssigner
         {
             if(isRunning)
             {
+               
                 quit();
             }
             else 
@@ -132,11 +136,11 @@ namespace SpriteAssigner
                 button1.Text = "Quit";
                 selectedindex = 0;
                 listBox1.SelectedIndex = 0;
-
+                isRunning = true;
             }
             mainWindow1.BigButtonClick();
             selectedindex = 0;
-            
+            Debug.WriteLine(isRunning);
         }
 
         private void quit()
@@ -145,12 +149,11 @@ namespace SpriteAssigner
             button1.Text = "Start";
             ContinueForm contForm = new ContinueForm();
            
-            using(Encoder enc = new Encoder(this, TexLocation))
-            {
+           
                 contForm.save += enc.writeToFile;//passing it over to the encoder to write to a file
                 contForm.Activate();
                 contForm.Show();
-            }
+            
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
