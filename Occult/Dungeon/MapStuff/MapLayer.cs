@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,7 +32,8 @@ namespace Occult.Dungeon.MapStuff
         public void setTileMap(Tile[,] arr) { tileMap = arr; }
         public Tile getTileAt(int x, int y)
         {
-           if(isInBounds(x, y))
+           
+            if(isInBounds(x, y))
             {                  
                 return tileMap[x, y];               
             }
@@ -112,7 +115,12 @@ namespace Occult.Dungeon.MapStuff
                     for (int x = 0; x < item.width; x++)
                     {
                         if (x + item.startX < width && y + item.startY < height)
-                            groundZero[x + item.startX, y + item.startY].tile = TileType.path;
+                        {
+                            Tile temps = groundZero[x + item.startX, y + item.startY];
+                            temps.tile = TileType.path;
+                            temps.typeOfFloor = Tile.FloorType.Room;
+                            temps.walkable = true;
+                        }
                     }
                 }
                 dig(lastroom, item, groundZero);  //this is the dig call(obviously)
@@ -125,8 +133,9 @@ namespace Occult.Dungeon.MapStuff
             //path between them
             //generate random loot? (maybe in the rectangle definition
             //generate the border
-            tileMap = groundZero;
             
+            tileMap = groundZero;
+            populateMap();
         }
 
         private Tile[,] generateBlankMap(int width, int height, TileType type = TileType.middle)
@@ -138,6 +147,7 @@ namespace Occult.Dungeon.MapStuff
                 {
                     Tile tile = new Tile();
                     tile.tile = type;
+                    tile.walkable = false;
                     temp[j, i] = tile;
                 }
             }
@@ -186,7 +196,12 @@ namespace Occult.Dungeon.MapStuff
         private void setGroundZeroDirt(int x, int y, Tile[,] groundZero)
         {
             if (x < groundZero.GetLength(0) && y < groundZero.GetLength(1))
-                groundZero[x, y].tile = TileType.path;
+            {
+                Tile temp = groundZero[x, y];
+                temp.tile = TileType.path;
+                temp.walkable = true;
+                temp.typeOfFloor = Tile.FloorType.Hallway;
+            }
         }
         #endregion
         //---------------------------------------------------
@@ -200,6 +215,37 @@ namespace Occult.Dungeon.MapStuff
                 }
             }
             return false;
+        }
+
+        private void populateMap()
+        {
+            rand = new Random();
+            bool stairPlaced = false;
+            for(int i = 0; i < width; i++)
+            {
+                for(int j = 0; j < height; j++)
+                {
+                    //for room based items
+                   if(tileMap[j,i].typeOfFloor == Tile.FloorType.Room)
+                    {
+                        //placing the stairs
+                        if(!stairPlaced && rand.Next(50) == 5)//give it a random chance of spawning
+                        {
+                            System.Diagnostics.Debug.WriteLine("Spawned Stair at {0} {1}", j,i);
+                            tileMap[j, i].tile = TileType.stair;
+                            tileMap[j, i].walkable = true;
+                            stairPlaced = true;
+
+                        }
+                    }
+                }
+            }
+            
+            if(!stairPlaced)
+            {
+                Tuple<int, int> backupStairSpawn = rooms[0].ChooseSpawnPoint();
+                tileMap[backupStairSpawn.Item1, backupStairSpawn.Item2].tile = TileType.stair;
+            }
         }
 
         

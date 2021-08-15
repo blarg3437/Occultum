@@ -52,6 +52,8 @@
     <Compile Include="Dungeon\MapStuff\TileType.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Dungeon\MapStuff\Map Generator.cs" />
+    <Compile Include="Graphics\Components\Animation.cs" />
+    <Compile Include="Graphics\Components\IComponent.cs" />
     <Compile Include="Graphics\LightPoly.cs" />
     <Compile Include="Graphics\PolygonMap.cs" />
     <Compile Include="Program.cs" />

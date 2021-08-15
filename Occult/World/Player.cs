@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Occult.Dungeon;
+using Occult.Dungeon.MapStuff;
 using Occult.Util;
 using Occult.Util.Graphics;
 using System;
@@ -15,11 +16,13 @@ namespace Occult.World
 {
     class Player:Actor
     {
+        
+
         private Texture2D playerTex;
         private int widthOffset, heightOffset;
 
-        public delegate void OnTileStep(Player sender);//eventually might want to migrate to base class
-        public event OnTileStep OnStairStep;
+        public delegate void OnTileStep();//eventually might want to migrate to base class
+        public static event OnTileStep OnStairStep;
         public Player(int x, int y, DungeonLevel level) : base(x,y, level)
         {
             widthOffset = Global.screenWidth/2;
@@ -30,7 +33,7 @@ namespace Occult.World
         
         public override void update(GameTime gameTime)
         {
-
+            
             
                 KeyboardState state = Keyboard.GetState();
                 if (state.IsKeyDown(Keys.W)) MoveBy(0, -1);
@@ -38,7 +41,12 @@ namespace Occult.World
                 if (state.IsKeyDown(Keys.S)) MoveBy(0, 1);
                 if (state.IsKeyDown(Keys.D)) MoveBy(1, 0);
 
-             
+            if (dungeonImIn.currentMap.getTileAt((int)position.X, (int)position.Y).tile == TileType.stair)
+            {
+                OnStairStep();
+                //check if it is the last level
+                //otherwise advance the level, and if it is then call dungeonscreen complete dungeon.
+            }
             
             base.update(gameTime);
         }
@@ -52,10 +60,13 @@ namespace Occult.World
             base.MoveBy(Xoff, Yoff);
         }
 
+        
+
+
         public void draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(playerTex, 
-                new Rectangle(widthOffset, heightOffset-Global.resolution / 2, Global.resolution, Global.resolution),
+                new Rectangle(widthOffset, heightOffset, Global.resolution, Global.resolution),
                 Color.White);//eventually add a tween offset, and add it here
         }
 

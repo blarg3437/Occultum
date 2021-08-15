@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -91,8 +92,9 @@ namespace Occult.Screens
 
         public void draw(SpriteBatch spriteBatch)
         {
-            
-           if(isTransistioning)
+           
+           
+            if (isTransistioning)
             {
                 //I think for now we will let the independent screens do begin and end so they can use their own shaders
                 //draw the transisiton draw, but for now just draw a black screen

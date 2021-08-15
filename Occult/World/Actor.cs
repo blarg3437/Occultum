@@ -38,6 +38,16 @@ namespace Occult.World
 
         public void setDungeonLevel(DungeonLevel level) => dungeonImIn = level;
 
+        public bool moveTo(int x, int y)
+        {
+            if(!willCollide(x,y))
+            {
+                position = new Vector2(x, y);
+                return true;
+            }
+            return false;
+        }
+
         protected virtual void MoveBy(int Xoff, int Yoff)
         {
             //eventually put a bit of collision detection
@@ -82,7 +92,7 @@ namespace Occult.World
             Tile tempTile = dungeonImIn.currentMap.getTileAt(newX, newY);
             if (tempTile != null)
             {
-                if (tempTile.tile == Dungeon.MapStuff.TileType.path)
+                if (tempTile.walkable)
                 {
                     return false;
                 }

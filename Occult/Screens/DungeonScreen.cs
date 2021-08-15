@@ -9,6 +9,7 @@ using Occult.Util.Graphics;
 using Occult.World;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Occult.Screens
                                  
             dungeon = new DungeonLevel(3);
             player = new Player(dungeon.currentMap.spawnLocation.Item1, dungeon.currentMap.spawnLocation.Item2, dungeon);
+            Player.OnStairStep += switchFloors;
             camera = new Camera(player, dungeon.currentMap);//this might cause problems when switching maps, as it is not updated to the camera
             res = Global.resolution;
             sourceres = 32;//temporary----------------------------------------------------------
@@ -64,14 +66,16 @@ namespace Occult.Screens
             {
                 for (int x = viewRect.X; x < viewRect.Width; x++)
                 {
+                    Tile testerTile = dungeon.currentMap.getTileAt(x, y);
                     //this bit is temporary until I put in the camera bounding
-                    if(dungeon.currentMap.getTileAt(x,y) != null)
+                    if (testerTile != null)
                     {
                         Rectangle sourceRect;
                         Vector2 dest = new Vector2((x - viewRect.X) * res, (y - viewRect.Y) * res);
+                        Color color = Color.White;
                       
                         //this will have to be contained in the currentmap at some point
-                        switch(dungeon.currentMap.getTileAt(x,y).tile)
+                        switch(testerTile.tile)
                             {
                             case (TileType.middle):
                              sourceRect = new Rectangle(0, 0, res, res);
@@ -100,13 +104,21 @@ namespace Occult.Screens
                             }
 
                         sourceRect.Width = sourceRect.Height = sourceres;
-
+                        if(testerTile.typeOfFloor == Tile.FloorType.Room)
+                        {
+                            color = Color.Red;
+                        }
+                        if(testerTile.typeOfFloor == Tile.FloorType.Hallway)
+                        {
+                            color = Color.Blue;
+                        }
+                        
 
                         spriteBatch.Draw(
                             texture: tester,
                             destinationRectangle: new Rectangle(dest.ToPoint(), new Point(res)),
                             sourceRectangle: sourceRect,
-                            color: Color.White);
+                            color: color);
                     }
                 }
                 
@@ -118,6 +130,30 @@ namespace Occult.Screens
             spriteBatch.End();
 
             
+        }
+
+        public void switchFloors()
+        {
+            //add some logic for switching floors, with a neat transition and all that
+            if (dungeon.currentLevel != dungeon.numberOfLevels)
+            {
+                generateNewDungeonAndAllThat();
+            }
+            else
+            {
+                endDungeon();
+            }
+        }
+
+        private void generateNewDungeonAndAllThat()
+        {
+            dungeon.generateNewMapLayer();
+            player.moveTo(dungeon.currentMap.spawnLocation.Item1, dungeon.currentMap.spawnLocation.Item2);
+        }
+
+        private void endDungeon()
+        {
+            //method to obliterate this method, by calling up to the screenmanager
         }
     }
 }

@@ -48,5 +48,20 @@ namespace Occult.Dungeon.MapStuff
 
             return me.Intersects(you);
         }
+
+        /**
+         * determines if the point is within the room or not
+         */
+        public bool pointInRoom(int x, int y)
+        {
+            if(x >= startX && x <= startX + width)
+            {
+                if(y >= startY && y <= startY + height)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

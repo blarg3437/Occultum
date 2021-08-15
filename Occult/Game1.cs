@@ -31,8 +31,8 @@ namespace Occult
         protected override void Initialize()
         {
             Util.Global.resolution = 48;
-            graphics.PreferredBackBufferWidth = Util.Global.resolution * 20;
-            graphics.PreferredBackBufferHeight = Util.Global.resolution * 13;
+            graphics.PreferredBackBufferWidth = Util.Global.resolution * 30;
+            graphics.PreferredBackBufferHeight = Util.Global.resolution * 20;
             graphics.ApplyChanges();
             // TODO: Add your initialization logic here
             Util.Global.screenWidth = GraphicsDevice.Viewport.Width;
