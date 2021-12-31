@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Occult.Dungeon
 {
-    class DungeonLevel
+    public class DungeonLevel
     {
         public MapLayer currentMap { get; private set; }
         public Tuple<int, int> spawnLocation;

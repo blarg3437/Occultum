@@ -13,11 +13,12 @@ namespace Occult
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            
+            graphics = new GraphicsDeviceManager(this);            
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }

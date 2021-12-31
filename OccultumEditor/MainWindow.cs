@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿
 using OccultumEditor.Designer;
 using System;
 using System.Collections.Generic;
@@ -57,7 +57,16 @@ namespace OccultumEditor
         //this is when you drag and drop into the menu
         private void MainWindow_DragEnter(object sender, DragEventArgs e)
         {
-            manager.addBlock
+            //manager.addBlock;
+        }
+
+        private void dialogEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //open the dialog editor.
+            
+            
+            
+           
         }
     }
 }

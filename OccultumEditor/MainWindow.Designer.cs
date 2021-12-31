@@ -37,13 +37,15 @@
             this.textureGrabberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.BlockSelect = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ActionLayout = new System.Windows.Forms.Panel();
             this.SceneViewer = new System.Windows.Forms.PictureBox();
-            this.BlockSelect = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.editorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dialogEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -56,7 +58,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.viewToolStripMenuItem});
+            this.viewToolStripMenuItem,
+            this.editorToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(967, 24);
@@ -121,6 +124,23 @@
             this.panel1.Size = new System.Drawing.Size(200, 348);
             this.panel1.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 297);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // BlockSelect
+            // 
+            this.BlockSelect.FormattingEnabled = true;
+            this.BlockSelect.Location = new System.Drawing.Point(15, 13);
+            this.BlockSelect.Name = "BlockSelect";
+            this.BlockSelect.Size = new System.Drawing.Size(167, 277);
+            this.BlockSelect.TabIndex = 0;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.textBox1);
@@ -164,22 +184,20 @@
             this.SceneViewer.TabStop = false;
             this.SceneViewer.Click += new System.EventHandler(this.SceneViewer_Click);
             // 
-            // BlockSelect
+            // editorToolStripMenuItem
             // 
-            this.BlockSelect.FormattingEnabled = true;
-            this.BlockSelect.Location = new System.Drawing.Point(15, 13);
-            this.BlockSelect.Name = "BlockSelect";
-            this.BlockSelect.Size = new System.Drawing.Size(167, 277);
-            this.BlockSelect.TabIndex = 0;
+            this.editorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dialogEditorToolStripMenuItem});
+            this.editorToolStripMenuItem.Name = "editorToolStripMenuItem";
+            this.editorToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.editorToolStripMenuItem.Text = "Editor";
             // 
-            // button1
+            // dialogEditorToolStripMenuItem
             // 
-            this.button1.Location = new System.Drawing.Point(15, 297);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
+            this.dialogEditorToolStripMenuItem.Name = "dialogEditorToolStripMenuItem";
+            this.dialogEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dialogEditorToolStripMenuItem.Text = "DialogEditor";
+            this.dialogEditorToolStripMenuItem.Click += new System.EventHandler(this.dialogEditorToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -224,6 +242,8 @@
         private System.Windows.Forms.Panel ActionLayout;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox BlockSelect;
+        private System.Windows.Forms.ToolStripMenuItem editorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dialogEditorToolStripMenuItem;
     }
 }
 

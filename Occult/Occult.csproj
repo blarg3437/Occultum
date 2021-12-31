@@ -52,6 +52,7 @@
     <Compile Include="Dungeon\MapStuff\TileType.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Dungeon\MapStuff\Map Generator.cs" />
+    <Compile Include="Graphics\2D\Animation.cs" />
     <Compile Include="Graphics\LightPoly.cs" />
     <Compile Include="Graphics\PolygonMap.cs" />
     <Compile Include="Program.cs" />
@@ -64,9 +65,18 @@
     <Compile Include="Util\FileLoader.cs" />
     <Compile Include="Util\Global.cs" />
     <Compile Include="Util\Graphics\Drawing.cs" />
+    <Compile Include="Util\Math\IntVector.cs" />
     <Compile Include="Util\Timer.cs" />
     <Compile Include="World\Actor.cs" />
+    <Compile Include="World\ActorFactory.cs" />
+    <Compile Include="World\Components\IComponent.cs" />
+    <Compile Include="World\Components\AnimationComponent.cs" />
+    <Compile Include="World\Components\InputComponent.cs" />
+    <Compile Include="World\Components\RenderComponent.cs" />
+    <Compile Include="World\Components\TranslationComponent.cs" />
+    <Compile Include="World\DIRECTION.cs" />
     <Compile Include="World\Item.cs" />
+    <Compile Include="World\NewActor.cs" />
     <Compile Include="World\Player.cs" />
     <Compile Include="World\Triggers\Trigger.cs" />
   </ItemGroup>
@@ -86,7 +96,10 @@
     <None Include="packages.config" />
     <None Include="ProgramStructure.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Listener\Events\" />
+    <Folder Include="World\Components\Packaging\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Import Project="packages\MonoGame.Forms.DX.2.4.0\build\MonoGame.Forms.DX.targets" Condition="Exists('packages\MonoGame.Forms.DX.2.4.0\build\MonoGame.Forms.DX.targets')" />

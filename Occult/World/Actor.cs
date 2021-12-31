@@ -8,27 +8,32 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Occult.Graphics._2D;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Occult.World
 {
-    abstract class Actor
+    class Actor
     {
         private static int lastID;
         public int ID { get; private set; }
 
         public delegate void Move(Actor sender);
         public event Move onMoveEvent;
+        public int moveTimerMilli;
+
+        
+        private float timer;
+        private Animation anim;
 
         protected bool isMoving;
-        private float timer;
-        public int moveTimerMilli;
-        
-
         protected Vector2 position;
-        public Vector2 getPostion() => position;
         protected DungeonLevel dungeonImIn;
+        protected bool isVisible;
+        public Vector2 getPostion() => position;
         
-        public Actor(int posX, int posY, DungeonLevel level)
+        
+        public Actor(int posX, int posY, DungeonLevel level, Animation anim)
         {
             ID = ++lastID;
             position = new Vector2(posX, posY);
@@ -75,6 +80,13 @@ namespace Occult.World
                     isMoving = false;
                 }
             }
+            
+            if (anim != null) anim.update(gameTime);
+        }
+
+        protected virtual void draw(SpriteBatch batch)
+        {
+           // if (anim != null) anim.draw(batch);
         }
 
         protected bool willCollide(int newX, int newY)
@@ -89,6 +101,8 @@ namespace Occult.World
             }
             return true;
         }
+
+
 
     }
 }

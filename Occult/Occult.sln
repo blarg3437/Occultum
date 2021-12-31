@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Occult", "Occult.csproj", "{5002032C-9100-4EFE-91D7-B99405F01776}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OccultumEditor", "..\OccultumEditor\OccultumEditor.csproj", "{12E31D8D-1745-4B9D-9ABE-0BB83807A240}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OccultLevelEditor", "..\OccultLevelEditor\OccultLevelEditor.csproj", "{72823EC6-5C61-42FC-8DE1-6A94513D217D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteAssigner", "..\SpriteAssigner\SpriteAssigner.csproj", "{9A9A84C7-4768-4C3F-9E7A-D05A4C23FBF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorWindow", "..\EditorWindow\EditorWindow.csproj", "{A8FA956A-42C5-4145-BB27-E269C87996B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,6 @@ Global
 		{5002032C-9100-4EFE-91D7-B99405F01776}.Release|Any CPU.ActiveCfg = Release|x86
 		{5002032C-9100-4EFE-91D7-B99405F01776}.Release|x86.ActiveCfg = Release|x86
 		{5002032C-9100-4EFE-91D7-B99405F01776}.Release|x86.Build.0 = Release|x86
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Debug|x86.Build.0 = Debug|Any CPU
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Release|x86.ActiveCfg = Release|Any CPU
-		{12E31D8D-1745-4B9D-9ABE-0BB83807A240}.Release|x86.Build.0 = Release|Any CPU
 		{72823EC6-5C61-42FC-8DE1-6A94513D217D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72823EC6-5C61-42FC-8DE1-6A94513D217D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72823EC6-5C61-42FC-8DE1-6A94513D217D}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -49,6 +41,14 @@ Global
 		{9A9A84C7-4768-4C3F-9E7A-D05A4C23FBF7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9A9A84C7-4768-4C3F-9E7A-D05A4C23FBF7}.Release|x86.ActiveCfg = Release|Any CPU
 		{9A9A84C7-4768-4C3F-9E7A-D05A4C23FBF7}.Release|x86.Build.0 = Release|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8FA956A-42C5-4145-BB27-E269C87996B5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

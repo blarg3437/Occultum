@@ -16,30 +16,30 @@ namespace OccultumEditor.Designer
                 blocks.Add(b);
         }
 
-        public ActionBlock addBlock(string type)
-        {
-            switch(type)
-            {
-                case "walk":
-                    break;
+        //public ActionBlock addBlock(string type)
+        //{
+        //    switch(type)
+        //    {
+        //        case "walk":
+        //            break;
 
-                case "spawn":
-                    break;
+        //        case "spawn":
+        //            break;
 
-                case "delete":
-                    break;
+        //        case "delete":
+        //            break;
 
-                case "turnleft":
-                    break;
+        //        case "turnleft":
+        //            break;
                     
-                case "turnright":
-                    break;
+        //        case "turnright":
+        //            break;
 
-                default:
-                    return null;
-                    break;
-            }
-        }
+        //        default:
+        //            return null;
+        //            break;
+        //    }
+        //}
     }
 
 
